@@ -1,0 +1,16 @@
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\bin\Debug\Earth Invaders.exe.config
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\bin\Debug\Earth Invaders.exe
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\bin\Debug\Earth Invaders.pdb
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth Invaders.csproj.AssemblyReference.cache
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth Invaders.csproj.SuggestedBindingRedirects.cache
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\MainWindow.g.cs
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\App.g.cs
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth Invaders_MarkupCompile.cache
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth Invaders_MarkupCompile.lref
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\MainWindow.baml
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth Invaders.g.resources
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth_Invaders.Properties.Resources.resources
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth Invaders.csproj.GenerateResource.cache
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth Invaders.csproj.CoreCompileInputs.cache
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth Invaders.exe
+C:\Users\manmi\source\repos\Earth Invaders\Earth Invaders\obj\Debug\Earth Invaders.pdb
