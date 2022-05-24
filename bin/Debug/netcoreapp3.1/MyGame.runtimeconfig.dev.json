@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "/home/datom/.dotnet/store/|arch|/|tfm|",
-      "/home/datom/.nuget/packages"
-    ]
-  }
-}
