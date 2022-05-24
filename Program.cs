@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace EarthDefenders
+namespace MyGame
 {
     public static class Program
     {
         [STAThread]
         static void Main()
         {
-            using (var game = new GameRoot())
+            using (var game = new Game1())
                 game.Run();
         }
     }
