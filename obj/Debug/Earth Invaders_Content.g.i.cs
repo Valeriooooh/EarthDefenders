@@ -8,14 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/invader1.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/invader2.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/invader3.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/invader4.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/invader5.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/invader6.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/invader7.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/invader8.gif")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/player.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("imagens/game_over.png")]
 
 

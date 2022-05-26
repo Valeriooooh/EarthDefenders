@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,10 +23,14 @@ namespace Space_Invaders_game
     /// </summary>
     public partial class MainWindow : Window
     {
+        private SoundPlayer _mainMusic;
+        private SoundPlayer _gameOverSound;
         bool goLeft, goRight;
 
+        const int INIT_ENEMIES = 40;
+
         // Uma lista de items a ser removidos
-        // basicamente um garbage colletor, desculpa lá Valerio
+        // basicamente um garbage colletor
         List<Rectangle> itemToRemove = new List<Rectangle>();
 
         int enemyImages = 0;
@@ -47,6 +52,11 @@ namespace Space_Invaders_game
         {
             InitializeComponent();
 
+            _mainMusic = new SoundPlayer("earth_defenders_music.wav");
+            _gameOverSound = new SoundPlayer("game_over_sound.wav");
+
+            _mainMusic.Play();
+
             gameTimer.Tick += GameLoop;
             gameTimer.Interval = TimeSpan.FromMilliseconds(20);
             gameTimer.Start();
@@ -55,15 +65,16 @@ namespace Space_Invaders_game
             player.Fill = playerSkin;
 
             myCanvas.Focus();
-            makeEnemies(30);
+            makeEnemies(INIT_ENEMIES);
         }
 
         private void GameLoop(object sender, EventArgs e)
         {
-            // Nem sei para que serve...
-            // To a gozar, cria a hitBox do player, acho eu
+
+
+            // Cria a hitBox do player
             Rect playerHitBox = new Rect(Canvas.GetLeft(player), Canvas.GetTop(player), player.Width, player.Height);
-            enemiesLeft.Content = "Enimigos que faltam: " + totalEnemies;
+            enemiesLeft.Content = "Enimigos que faltam: " + (totalEnemies);
 
             // mover Jogador 
             if (goLeft && Canvas.GetLeft(player) > 0)
@@ -88,10 +99,10 @@ namespace Space_Invaders_game
             }
 
             // Todas as movimentações, balas a serem disparadas, 
-            // enimigos a moverem-se, são criadas aqui! :) 
+            // enimigos a moverem-se, são criadas aqui!
             foreach (var x in myCanvas.Children.OfType<Rectangle>())
             {
-                // Las balas se mueven, pew pew
+                // Move as balas
                 if(x is Rectangle && (string)x.Tag == "bullet")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) - 20);
@@ -101,10 +112,9 @@ namespace Space_Invaders_game
                         itemToRemove.Add(x);
                     }
 
-                    // Para ser sincero, eu não faço a mínima idea do que isso faz
-                    // mas sem isso o jogo não funciona, então fica aqui
                     Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
+                    //Mata o enimigo
                     foreach (var y in myCanvas.Children.OfType<Rectangle>())
                     {
                         if (y is Rectangle && (string)y.Tag == "enemy")
@@ -125,26 +135,27 @@ namespace Space_Invaders_game
 
                 }
 
-                // Mexe os bichinhos AKA enimigos
+                // Move os enimigos
                 if(x is Rectangle && (string)x.Tag == "enemy")
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed);
 
                     if(Canvas.GetLeft(x) > 820)
                     {
-                        Canvas.SetLeft(x, -80);
+                        Canvas.SetLeft(x, -180);
                         Canvas.SetTop(x, Canvas.GetTop(x) + (x.Height + 10));
+                        
                     }
 
                     Rect enemyHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
                     if (playerHitBox.IntersectsWith(enemyHitBox)) 
                     {
-                        showGameOver("Foste matado pelos invasores!!");
+                        showGameOver("Foste morto pelos invasores!!");
                     }
                 }
 
-                // move as balas inimigas, sim inimigas
+                // move as balas enimigas
                 if(x is Rectangle && (string)x.Tag == "enemyBullet")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) + 10);
@@ -158,7 +169,7 @@ namespace Space_Invaders_game
 
                     if (playerHitBox.IntersectsWith(enemyBulletHitBox)) 
                     {
-                        showGameOver("Foste matado pelos invasores!!");
+                        showGameOver("Foste morto pelos invasores!!");
                     }
 
 
@@ -166,28 +177,24 @@ namespace Space_Invaders_game
             }
 
             // Remove alguns elementos no Canvas 
-            // Supostamente melhora a performance 
-            // Claro que não, isto é pior que Electron esta completamente igual
             foreach (Rectangle i in itemToRemove)
             {
                 myCanvas.Children.Remove(i);
             }
 
             // Aumenta a velocidade dos aliens
-            // Porque os familiares morreram na guerra e agora estão chateados
-            // Family > tudo - Diesel, Vin
-            if(totalEnemies < 10) 
+            if(totalEnemies < INIT_ENEMIES/2) 
             {
                 enemySpeed = 12;
             }
 
-            if(totalEnemies < 1) 
+            if(totalEnemies <= 0)
             {
                 showGameOver("Ganhaste! Parabéns salvaste o mundo!");
             }
         }
 
-        // Deteta se ast teclas foram clicadas
+        // Deteta se as teclas foram clicadas
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
 
@@ -203,12 +210,13 @@ namespace Space_Invaders_game
 
             if (e.Key == Key.Space)
             {
-                // Design da bala friendly (vermelha)
+
+                // Design da bala (vermelha)
                 Rectangle newBullet = new Rectangle
                 {
                     Tag = "bullet",
-                    Height = 20,
-                    Width = 5,
+                    Height = 22,
+                    Width = 7,
                     Fill = Brushes.White,
                     Stroke = Brushes.Red
                 };
@@ -220,7 +228,7 @@ namespace Space_Invaders_game
                 myCanvas.Children.Add(newBullet);
             }
 
-            // Fecha e cria outra janela, quando clicar no Enter
+            // Fecha e cria outra janela, ao clicar no Enter
             if(e.Key == Key.Enter && gameOver)
             {
                 System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
@@ -249,10 +257,10 @@ namespace Space_Invaders_game
             {
                 Tag = "enemyBullet",
                 Height = 40,
-                Width = 15,
+                Width = 12,
                 Fill = Brushes.Yellow,
                 Stroke = Brushes.Black,
-                StrokeThickness = 5,
+                StrokeThickness =2,
             };
 
             Canvas.SetTop(enemyBullet, y);
@@ -261,8 +269,7 @@ namespace Space_Invaders_game
             myCanvas.Children.Add(enemyBullet);
         }
 
-        // Fazedor de enemigos 
-        // Faz enemigos
+        // Crias os enimigos
         private void makeEnemies(int limit)
         {
             int left = 0;
@@ -338,13 +345,17 @@ namespace Space_Invaders_game
             }
         }
 
-        // Mostra aquelas mensaguens irritantes la em cima
-        // Sim fui eu que pus la, mas não sei como arranjar RIP
+        // Mostra algumas mensagens por cima
         private void showGameOver(string msg)
         {
+            ImageBrush gameOverImage = new ImageBrush();
             gameOver = true;
             gameTimer.Stop();
-            enemiesLeft.Content += " " + msg + " Clica Enter para jogar novamente";
+            _mainMusic.Stop();
+
+            _gameOverSound.Play();
+
+            enemiesLeft.Content = " " + msg + " Clica Enter para jogar novamente";
         }
     }
 }

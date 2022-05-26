@@ -105,5 +105,11 @@
     <Resource Include="imagens\invader8.gif" />
     <Resource Include="imagens\player.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagens\galaxy_bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagens\game_over.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

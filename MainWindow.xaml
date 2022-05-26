@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:Space_Invaders_game"
         mc:Ignorable="d"
         Title="Space Invaders" Height="500" Width="800">
-    <Canvas Name="myCanvas" Focusable="True" Background="Black" KeyDown="KeyIsDown" KeyUp="KeyIsUp">
+    <Window.Background>
+        <ImageBrush ImageSource="imagens/galaxy_bg.jpg" />
+    </Window.Background>
+
+    <Canvas Name="myCanvas" Focusable="True" KeyDown="KeyIsDown" KeyUp="KeyIsUp">
         <Label Name="enemiesLeft" Foreground="white" FontSize="16" FontWeight="ExtraBold">Enimigos que faltam: 0</Label>
 
         <Rectangle Name="player" Fill="White" Height="65" Width="55" Canvas.Left="381" Canvas.Top="394"></Rectangle>
